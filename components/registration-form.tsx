@@ -334,7 +334,7 @@ export default function RegistrationForm() {
                     <label className="flex items-start space-x-3 cursor-pointer">
                          <Checkbox id="consent" required className="mt-1 w-4 h-4 md:w-5 md:h-5 rounded-md" />
                          <span className="text-slate-600 leading-relaxed text-xs md:text-sm">
-                            I verify that all the information provided is accurate. I understand that my role assignment is subject to availability and the discretion of the organizers. I agree to the potential background verification if required.
+                            I confirm that I will volunteer for Freedom Carnival 2026 with kindness, empathy, and respect. I agree to follow the instructions of the organizers, perform my duties responsibly, and take responsibility for my own safety during the event.
                          </span>
                     </label>
                  </div>
