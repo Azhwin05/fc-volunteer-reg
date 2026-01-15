@@ -17,8 +17,8 @@ const volunteerSchema = z.object({
   has_experience: z.boolean().default(false),
   comfort_special_needs: z.boolean().default(false),
   transport_needed: z.boolean().default(false),
-  available_dates: z.array(z.string()).min(1, "Select at least one available date"),
-  preferred_slots: z.array(z.string()).min(1, "Select at least one time slot"),
+  // available_dates: Removed as per request
+  // preferred_slots: Removed as per request
   location: z.string().min(2, "Location is required"),
   organization: z.string().optional(),
   emergency_contact_name: z.string().min(2, "Emergency contact name is required"),
@@ -39,9 +39,8 @@ export async function registerVolunteer(
 ): Promise<FormState> {
   const supabase = await createClient()
   
-  // Parse FormData ... (remains same)
   const rawData: Record<string, any> = {}
-  const arrayKeys = ['preferred_roles', 'skills', 'available_dates', 'preferred_slots']
+  const arrayKeys = ['preferred_roles', 'skills']
   
   arrayKeys.forEach(k => rawData[k] = [])
 
