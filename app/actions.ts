@@ -68,6 +68,18 @@ export async function registerVolunteer(
   }
 
   // ---------------------------------------------------------
+  // 0. CHECK ENVIRONMENT
+  // ---------------------------------------------------------
+  if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+     console.error("FATAL: Missing Supabase Environment Variables")
+     return {
+        message: "System Configuration Error: Missing Environment Variables. Please contact admin.",
+        error: true, 
+        fields: rawData
+     }
+  }
+
+  // ---------------------------------------------------------
   // 1. Generate Meaningful Reference ID
   // Format: FC26-{ROLE_CODE}-{SEQUENCE}
   // ---------------------------------------------------------
@@ -78,7 +90,13 @@ export async function registerVolunteer(
   // Get Sequence (Current count + 1001) for basic ordering
   // Note: For high-concurrency production, use a Database Sequence/Trigger. 
   // For this event scale, count is sufficient.
-  const { count } = await supabase.from('volunteers').select('*', { count: 'exact', head: true })
+  const { count, error: countError } = await supabase.from('volunteers').select('*', { count: 'exact', head: true })
+
+  if (countError) {
+      console.error("Supabase Count Error:", countError)
+      return { message: "Database Connection Failed. Check configuration.", error: true, fields: rawData }
+  }
+
   const sequence = (count || 0) + 1001
   
   const reference_id = `FC26-${roleCode}-${sequence}`
@@ -93,11 +111,11 @@ export async function registerVolunteer(
   })
 
   if (error) {
-    console.error('Supabase Error:', error)
+    console.error('Supabase Insert Error:', error)
     if (error.code === '23505') { 
         return { message: "This email or phone number is already registered.", error: true, fields: rawData }
     }
-    return { message: "Failed to save registration. Please try again.", error: true, fields: rawData }
+    return { message: `Registration Failed: ${error.message}`, error: true, fields: rawData }
   }
 
   // ---------------------------------------------------------
