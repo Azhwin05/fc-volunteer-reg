@@ -214,36 +214,36 @@ export default function RegistrationForm() {
       )}
 
       <form action={formAction} ref={formRef} onChange={handleFormChange}>
-        <div className="bg-white rounded-[32px] shadow-sm border border-slate-100 p-8 md:p-12">
+        <div className="bg-white rounded-3xl md:rounded-[32px] shadow-sm border border-slate-100 p-5 md:p-12">
             
             {/* STEP 1: PERSONAL INFO */}
             <div className={step === 1 ? "block animate-in slide-in-from-right-8 fade-in duration-300" : "hidden"}>
                <SectionHeading number={1} title="Who are you?" active={true} />
-               <div className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-6">
+               <div className="space-y-4 md:space-y-6">
+                  <div className="grid md:grid-cols-2 gap-4 md:gap-6">
                      <div className="col-span-2">
-                       <Label className="text-xs uppercase font-bold text-slate-500 tracking-wider mb-2 block">Full Name</Label>
-                       <Input name="full_name" placeholder="E.g. Jane Doe" required defaultValue={state.fields?.full_name} className="h-14 px-6 rounded-2xl bg-slate-50 border-transparent focus:border-black focus:ring-0 focus:bg-white transition-all text-lg" />
+                       <Label className="text-[10px] md:text-xs uppercase font-bold text-slate-500 tracking-wider mb-2 block">Full Name</Label>
+                       <Input name="full_name" placeholder="E.g. Jane Doe" required defaultValue={state.fields?.full_name} className="h-12 md:h-14 px-4 md:px-6 rounded-2xl bg-slate-50 border-transparent focus:border-black focus:ring-0 focus:bg-white transition-all text-base md:text-lg" />
                      </div>
                      <div className="col-span-2">
-                       <Label className="text-xs uppercase font-bold text-slate-500 tracking-wider mb-2 block">Organization / Institution Name</Label>
-                       <Input name="organization" placeholder="College, Company, or NGO Name" defaultValue={state.fields?.organization} className="h-14 px-6 rounded-2xl bg-slate-50 border-transparent focus:border-black focus:ring-0 focus:bg-white transition-all text-lg" />
+                       <Label className="text-[10px] md:text-xs uppercase font-bold text-slate-500 tracking-wider mb-2 block">Organization / Institution Name</Label>
+                       <Input name="organization" placeholder="College, Company, or NGO Name" defaultValue={state.fields?.organization} className="h-12 md:h-14 px-4 md:px-6 rounded-2xl bg-slate-50 border-transparent focus:border-black focus:ring-0 focus:bg-white transition-all text-base md:text-lg" />
                      </div>
                      <div>
-                       <Label className="text-xs uppercase font-bold text-slate-500 tracking-wider mb-2 block">Age</Label>
-                       <Input name="age" type="number" placeholder="25" min="18" max="99" required defaultValue={state.fields?.age} className="h-14 px-6 rounded-2xl bg-slate-50 border-transparent focus:border-black focus:ring-0 focus:bg-white transition-all text-lg" />
+                       <Label className="text-[10px] md:text-xs uppercase font-bold text-slate-500 tracking-wider mb-2 block">Age</Label>
+                       <Input name="age" type="number" placeholder="25" min="18" max="99" required defaultValue={state.fields?.age} className="h-12 md:h-14 px-4 md:px-6 rounded-2xl bg-slate-50 border-transparent focus:border-black focus:ring-0 focus:bg-white transition-all text-base md:text-lg" />
                      </div>
                       <div>
-                        <Label className="text-xs uppercase font-bold text-slate-500 tracking-wider mb-2 block">Location</Label>
-                        <Input name="location" placeholder="City/Area" required defaultValue={state.fields?.location} className="h-14 px-6 rounded-2xl bg-slate-50 border-transparent focus:border-black focus:ring-0 focus:bg-white transition-all text-lg" />
+                        <Label className="text-[10px] md:text-xs uppercase font-bold text-slate-500 tracking-wider mb-2 block">Location</Label>
+                        <Input name="location" placeholder="City/Area" required defaultValue={state.fields?.location} className="h-12 md:h-14 px-4 md:px-6 rounded-2xl bg-slate-50 border-transparent focus:border-black focus:ring-0 focus:bg-white transition-all text-base md:text-lg" />
                      </div>
                       <div>
-                        <Label className="text-xs uppercase font-bold text-slate-500 tracking-wider mb-2 block">Phone</Label>
-                        <Input name="phone" type="tel" placeholder="+91..." required defaultValue={state.fields?.phone} className="h-14 px-6 rounded-2xl bg-slate-50 border-transparent focus:border-black focus:ring-0 focus:bg-white transition-all text-lg" />
+                        <Label className="text-[10px] md:text-xs uppercase font-bold text-slate-500 tracking-wider mb-2 block">Phone</Label>
+                        <Input name="phone" type="tel" placeholder="+91..." required defaultValue={state.fields?.phone} className="h-12 md:h-14 px-4 md:px-6 rounded-2xl bg-slate-50 border-transparent focus:border-black focus:ring-0 focus:bg-white transition-all text-base md:text-lg" />
                      </div>
                      <div className="col-span-2">
-                        <Label className="text-xs uppercase font-bold text-slate-500 tracking-wider mb-2 block">Email Address</Label>
-                        <Input name="email" type="email" placeholder="jane@example.com" required defaultValue={state.fields?.email} className="h-14 px-6 rounded-2xl bg-slate-50 border-transparent focus:border-black focus:ring-0 focus:bg-white transition-all text-lg" />
+                        <Label className="text-[10px] md:text-xs uppercase font-bold text-slate-500 tracking-wider mb-2 block">Email Address</Label>
+                        <Input name="email" type="email" placeholder="jane@example.com" required defaultValue={state.fields?.email} className="h-12 md:h-14 px-4 md:px-6 rounded-2xl bg-slate-50 border-transparent focus:border-black focus:ring-0 focus:bg-white transition-all text-base md:text-lg" />
                      </div>
                   </div>
                </div>
@@ -253,14 +253,14 @@ export default function RegistrationForm() {
             <div className={step === 2 ? "block animate-in slide-in-from-right-8 fade-in duration-300" : "hidden"}>
               <SectionHeading number={2} title="How can you help?" active={true} />
               
-              <div className="space-y-8">
+              <div className="space-y-6 md:space-y-8">
                 <div>
-                    <Label className="text-xs uppercase font-bold text-slate-500 tracking-wider mb-4 block">Select Roles</Label>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <Label className="text-[10px] md:text-xs uppercase font-bold text-slate-500 tracking-wider mb-3 md:mb-4 block">Select Roles</Label>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-3">
                         {ROLES.map((role) => (
-                        <label key={role} className="flex items-center space-x-3 p-4 rounded-xl border-2 border-slate-100 cursor-pointer hover:border-black transition-colors [&:has(:checked)]:border-black [&:has(:checked)]:bg-slate-50">
-                            <Checkbox name="preferred_roles" value={role} className="w-5 h-5 rounded-md border-2 border-slate-300 data-[state=checked]:bg-black data-[state=checked]:border-black" />
-                            <span className="font-medium text-slate-800">{role}</span>
+                        <label key={role} className="flex items-center space-x-3 p-3 md:p-4 rounded-xl border-2 border-slate-100 cursor-pointer hover:border-black transition-colors [&:has(:checked)]:border-black [&:has(:checked)]:bg-slate-50">
+                            <Checkbox name="preferred_roles" value={role} className="w-5 h-5 rounded-md border-2 border-slate-300 data-[state=checked]:bg-black data-[state=checked]:border-black shrink-0" />
+                            <span className="font-medium text-sm md:text-base text-slate-800 leading-tight">{role}</span>
                         </label>
                         ))}
                     </div>
@@ -269,16 +269,16 @@ export default function RegistrationForm() {
                 <Separator />
                 
                 <div>
-                     <Label className="text-xs uppercase font-bold text-slate-500 tracking-wider mb-4 block">Skills</Label>
-                     <div className="flex flex-wrap gap-3">
+                     <Label className="text-[10px] md:text-xs uppercase font-bold text-slate-500 tracking-wider mb-3 md:mb-4 block">Skills</Label>
+                     <div className="flex flex-wrap gap-2 md:gap-3">
                         {SKILLS.map((skill) => (
-                             <label key={skill} className="flex items-center space-x-2 px-4 py-2 rounded-full border border-slate-200 cursor-pointer hover:bg-slate-50 [&:has(:checked)]:bg-slate-900 [&:has(:checked)]:text-white [&:has(:checked)]:border-slate-900 transition-all">
+                             <label key={skill} className="flex items-center space-x-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full border border-slate-200 cursor-pointer hover:bg-slate-50 [&:has(:checked)]:bg-slate-900 [&:has(:checked)]:text-white [&:has(:checked)]:border-slate-900 transition-all">
                                 <input type="checkbox" name="skills" value={skill} className="hidden" />
-                                <span className="text-sm font-medium">{skill}</span>
+                                <span className="text-xs md:text-sm font-medium">{skill}</span>
                             </label>
                         ))}
                      </div>
-                     <Input name="custom_skills" placeholder="Other skills..." className="mt-4 h-12 rounded-xl bg-slate-50 border-transparent" />
+                     <Input name="custom_skills" placeholder="Other skills..." className="mt-4 h-12 rounded-xl bg-slate-50 border-transparent text-sm md:text-base" />
                 </div>
               </div>
             </div>
@@ -287,40 +287,40 @@ export default function RegistrationForm() {
             <div className={step === 3 ? "block animate-in slide-in-from-right-8 fade-in duration-300" : "hidden"}>
                 <SectionHeading number={3} title="When are you free?" active={true} />
                 
-                <div className="space-y-8">
+                <div className="space-y-6 md:space-y-8">
                     <div>
-                        <Label className="text-xs uppercase font-bold text-slate-500 tracking-wider mb-4 block">Availability</Label>
-                        <div className="grid md:grid-cols-3 gap-3">
+                        <Label className="text-[10px] md:text-xs uppercase font-bold text-slate-500 tracking-wider mb-3 md:mb-4 block">Availability</Label>
+                        <div className="grid md:grid-cols-3 gap-2 md:gap-3">
                              {DATES.map(date => (
-                                <label key={date} className="p-4 rounded-xl border-2 border-slate-100 cursor-pointer hover:border-black text-center [&:has(:checked)]:border-black [&:has(:checked)]:bg-slate-50">
+                                <label key={date} className="p-3 md:p-4 rounded-xl border-2 border-slate-100 cursor-pointer hover:border-black text-center [&:has(:checked)]:border-black [&:has(:checked)]:bg-slate-50">
                                     <Checkbox name="available_dates" value={date} className="mb-2" />
-                                    <div className="font-semibold text-slate-800">{date.split(',')[0]}</div>
-                                    <div className="text-xs text-slate-500">{date.split(',')[1]}</div>
+                                    <div className="font-semibold text-sm md:text-base text-slate-800">{date.split(',')[0]}</div>
+                                    <div className="text-[10px] md:text-xs text-slate-500">{date.split(',')[1]}</div>
                                 </label>
                              ))}
                         </div>
                     </div>
 
                      <div>
-                        <Label className="text-xs uppercase font-bold text-slate-500 tracking-wider mb-4 block">Time Slots</Label>
+                        <Label className="text-[10px] md:text-xs uppercase font-bold text-slate-500 tracking-wider mb-3 md:mb-4 block">Time Slots</Label>
                         <div className="space-y-2">
                              {TIME_SLOTS.map(slot => (
-                                <label key={slot} className="flex items-center justify-between p-4 rounded-xl bg-slate-50 cursor-pointer hover:bg-slate-100 [&:has(:checked)]:bg-blue-50/50 [&:has(:checked)]:ring-1 ring-blue-200">
-                                    <span className="font-medium text-slate-700">{slot}</span>
+                                <label key={slot} className="flex items-center justify-between p-3 md:p-4 rounded-xl bg-slate-50 cursor-pointer hover:bg-slate-100 [&:has(:checked)]:bg-blue-50/50 [&:has(:checked)]:ring-1 ring-blue-200">
+                                    <span className="font-medium text-sm md:text-base text-slate-700">{slot}</span>
                                     <Checkbox name="preferred_slots" value={slot}/>
                                 </label>
                              ))}
                         </div>
                     </div>
 
-                    <div className="grid md:grid-cols-2 gap-6">
+                    <div className="grid md:grid-cols-2 gap-4 md:gap-6">
                          <div>
-                            <Label className="text-xs uppercase font-bold text-slate-500 tracking-wider mb-2 block">Emergency Contact Name</Label>
-                            <Input name="emergency_contact_name" className="h-12 rounded-xl bg-slate-50 border-transparent" />
+                            <Label className="text-[10px] md:text-xs uppercase font-bold text-slate-500 tracking-wider mb-2 block">Emergency Contact Name</Label>
+                            <Input name="emergency_contact_name" className="h-12 md:h-14 rounded-xl bg-slate-50 border-transparent text-base md:text-lg" />
                          </div>
                          <div>
-                            <Label className="text-xs uppercase font-bold text-slate-500 tracking-wider mb-2 block">Emergency Phone</Label>
-                            <Input name="emergency_contact_phone" className="h-12 rounded-xl bg-slate-50 border-transparent" />
+                            <Label className="text-[10px] md:text-xs uppercase font-bold text-slate-500 tracking-wider mb-2 block">Emergency Phone</Label>
+                            <Input name="emergency_contact_phone" className="h-12 md:h-14 rounded-xl bg-slate-50 border-transparent text-base md:text-lg" />
                          </div>
                     </div>
                 </div>
@@ -330,11 +330,11 @@ export default function RegistrationForm() {
              <div className={step === 4 ? "block animate-in slide-in-from-right-8 fade-in duration-300" : "hidden"}>
                  <SectionHeading number={4} title="One last check" active={true} />
                  
-                 <div className="bg-slate-50 p-6 rounded-2xl mb-8">
-                    <p className="text-lg font-medium text-slate-800 mb-4">Declaration</p>
+                 <div className="bg-slate-50 p-4 md:p-6 rounded-2xl mb-6 md:mb-8">
+                    <p className="text-base md:text-lg font-medium text-slate-800 mb-3 md:mb-4">Declaration</p>
                     <label className="flex items-start space-x-3 cursor-pointer">
-                         <Checkbox id="consent" required className="mt-1 w-5 h-5 rounded-md" />
-                         <span className="text-slate-600 leading-relaxed text-sm">
+                         <Checkbox id="consent" required className="mt-1 w-4 h-4 md:w-5 md:h-5 rounded-md" />
+                         <span className="text-slate-600 leading-relaxed text-xs md:text-sm">
                             I verify that all the information provided is accurate. I understand that my role assignment is subject to availability and the discretion of the organizers. I agree to the potential background verification if required.
                          </span>
                     </label>
@@ -342,26 +342,26 @@ export default function RegistrationForm() {
              </div>
 
             {/* NAVIGATION BUTTONS */}
-            <div className="flex items-center justify-between mt-12 pt-6 border-t border-slate-100">
+            <div className="flex items-center justify-between mt-8 md:mt-12 pt-6 border-t border-slate-100">
                 {step > 1 ? (
-                    <Button type="button" variant="ghost" onClick={prevStep} className="text-slate-500 hover:text-slate-900 font-medium">
+                    <Button type="button" variant="ghost" onClick={prevStep} className="text-slate-500 hover:text-slate-900 font-medium text-sm md:text-base">
                         Back
                     </Button>
                 ) : <div />}
 
                 {step < 4 ? (
-                    <Button type="button" onClick={nextStep} className="bg-black hover:bg-zinc-800 text-white rounded-full px-8 py-6 text-lg font-medium shadow-lg hover:shadow-xl transition-all">
-                        Next Step <ChevronRight className="ml-2 w-5 h-5"/>
+                    <Button type="button" onClick={nextStep} className="bg-black hover:bg-zinc-800 text-white rounded-full px-6 py-4 md:px-8 md:py-6 text-base md:text-lg font-medium shadow-lg hover:shadow-xl transition-all h-auto">
+                        Next Step <ChevronRight className="ml-2 w-4 h-4 md:w-5 md:h-5"/>
                     </Button>
                 ) : (
-                    <div className="w-full pl-6"><SubmitButton /></div>
+                    <div className="w-full pl-4 md:pl-6"><SubmitButton /></div>
                 )}
             </div>
             
             {/* Steps Indicator - Minimal */}
-            <div className="flex justify-center space-x-2 mt-8">
+            <div className="flex justify-center space-x-2 mt-6 md:mt-8">
                 {[1, 2, 3, 4].map(i => (
-                    <div key={i} className={`h-1.5 rounded-full transition-all duration-500 ${step >= i ? 'w-8 bg-slate-900' : 'w-2 bg-slate-200'}`} />
+                    <div key={i} className={`h-1.5 rounded-full transition-all duration-500 ${step >= i ? 'w-6 md:w-8 bg-slate-900' : 'w-2 bg-slate-200'}`} />
                 ))}
             </div>
 
