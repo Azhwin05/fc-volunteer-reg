@@ -149,6 +149,38 @@ export default function RegistrationForm() {
   
   const nextStep = (e: React.MouseEvent) => {
     e.preventDefault()
+
+    if (formRef.current) {
+        const formData = new FormData(formRef.current)
+        
+        // STEP 1 VALIDATION
+        if (step === 1) {
+            const requiredFields = ['full_name', 'organization', 'age', 'location', 'phone', 'email', 'emergency_contact_name', 'emergency_contact_phone']
+            const emptyFields = requiredFields.filter(field => !formData.get(field))
+            
+            if (emptyFields.length > 0) {
+                // Simple alert for immediate blocking, or we could set state.message
+                alert(`Please fill in all required fields:\n${emptyFields.join(', ')}`)
+                return
+            }
+        }
+
+        // STEP 2 VALIDATION
+        if (step === 2) {
+            const roles = formData.getAll('preferred_roles')
+            const skills = formData.getAll('skills')
+            
+            if (roles.length === 0) {
+                alert("Please select at least one role.")
+                return
+            }
+            if (skills.length === 0) {
+                alert("Please select at least one skill.")
+                return
+            }
+        }
+    }
+
     setStep(s => Math.min(s + 1, 3))
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
