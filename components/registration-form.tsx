@@ -220,10 +220,9 @@ export default function RegistrationForm() {
             <div className={step === 1 ? "block animate-in slide-in-from-right-8 fade-in duration-300" : "hidden"}>
                <SectionHeading number={1} title="Who are you?" active={true} />
                <div className="space-y-4 md:space-y-6">
-                  <div className="grid md:grid-cols-2 gap-4 md:gap-6">
                      <div className="col-span-2">
                        <Label className="text-[10px] md:text-xs uppercase font-bold text-slate-500 tracking-wider mb-2 block">Full Name</Label>
-                       <Input name="full_name" placeholder="E.g. Jane Doe" required defaultValue={state.fields?.full_name} className="h-12 md:h-14 px-4 md:px-6 rounded-2xl bg-slate-50 border-transparent focus:border-black focus:ring-0 focus:bg-white transition-all text-base md:text-lg" />
+                       <Input name="full_name" placeholder="E.g. Jane Doe" defaultValue={state.fields?.full_name} className="h-12 md:h-14 px-4 md:px-6 rounded-2xl bg-slate-50 border-transparent focus:border-black focus:ring-0 focus:bg-white transition-all text-base md:text-lg" />
                      </div>
                      <div className="col-span-2">
                        <Label className="text-[10px] md:text-xs uppercase font-bold text-slate-500 tracking-wider mb-2 block">Organization / Institution Name</Label>
@@ -231,21 +230,20 @@ export default function RegistrationForm() {
                      </div>
                      <div>
                        <Label className="text-[10px] md:text-xs uppercase font-bold text-slate-500 tracking-wider mb-2 block">Age</Label>
-                       <Input name="age" type="number" placeholder="25" min="18" max="99" required defaultValue={state.fields?.age} className="h-12 md:h-14 px-4 md:px-6 rounded-2xl bg-slate-50 border-transparent focus:border-black focus:ring-0 focus:bg-white transition-all text-base md:text-lg" />
+                       <Input name="age" type="number" placeholder="25" min="18" max="99" defaultValue={state.fields?.age} className="h-12 md:h-14 px-4 md:px-6 rounded-2xl bg-slate-50 border-transparent focus:border-black focus:ring-0 focus:bg-white transition-all text-base md:text-lg" />
                      </div>
                       <div>
                         <Label className="text-[10px] md:text-xs uppercase font-bold text-slate-500 tracking-wider mb-2 block">Location</Label>
-                        <Input name="location" placeholder="City/Area" required defaultValue={state.fields?.location} className="h-12 md:h-14 px-4 md:px-6 rounded-2xl bg-slate-50 border-transparent focus:border-black focus:ring-0 focus:bg-white transition-all text-base md:text-lg" />
+                        <Input name="location" placeholder="City/Area" defaultValue={state.fields?.location} className="h-12 md:h-14 px-4 md:px-6 rounded-2xl bg-slate-50 border-transparent focus:border-black focus:ring-0 focus:bg-white transition-all text-base md:text-lg" />
                      </div>
                       <div>
                         <Label className="text-[10px] md:text-xs uppercase font-bold text-slate-500 tracking-wider mb-2 block">Phone</Label>
-                        <Input name="phone" type="tel" placeholder="+91..." required defaultValue={state.fields?.phone} className="h-12 md:h-14 px-4 md:px-6 rounded-2xl bg-slate-50 border-transparent focus:border-black focus:ring-0 focus:bg-white transition-all text-base md:text-lg" />
+                        <Input name="phone" type="tel" placeholder="+91..." defaultValue={state.fields?.phone} className="h-12 md:h-14 px-4 md:px-6 rounded-2xl bg-slate-50 border-transparent focus:border-black focus:ring-0 focus:bg-white transition-all text-base md:text-lg" />
                      </div>
                      <div className="col-span-2">
                         <Label className="text-[10px] md:text-xs uppercase font-bold text-slate-500 tracking-wider mb-2 block">Email Address</Label>
-                        <Input name="email" type="email" placeholder="jane@example.com" required defaultValue={state.fields?.email} className="h-12 md:h-14 px-4 md:px-6 rounded-2xl bg-slate-50 border-transparent focus:border-black focus:ring-0 focus:bg-white transition-all text-base md:text-lg" />
+                        <Input name="email" type="email" placeholder="jane@example.com" defaultValue={state.fields?.email} className="h-12 md:h-14 px-4 md:px-6 rounded-2xl bg-slate-50 border-transparent focus:border-black focus:ring-0 focus:bg-white transition-all text-base md:text-lg" />
                      </div>
-                  </div>
                </div>
             </div>
 
