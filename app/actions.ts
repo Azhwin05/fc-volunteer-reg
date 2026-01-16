@@ -86,17 +86,25 @@ export async function registerVolunteer(
   // Get Role Code (First letter of first role, e.g., 'M' for Medical)
   const roleCode = parsed.data.preferred_roles[0]?.charAt(0).toUpperCase() || 'G' // G for General
   
-  // Get Sequence (Current count + 1001) for basic ordering
-  // Note: For high-concurrency production, use a Database Sequence/Trigger. 
-  // For this event scale, count is sufficient.
-  const { count, error: countError } = await supabase.from('volunteers').select('*', { count: 'exact', head: true })
+  // Get Sequence (Find max existing sequence to avoid collision on delete)
+  // Note: For high-concurrency production, use a Database Sequence/Trigger.
+  const { data: lastVolunteer, error: fetchError } = await supabase
+      .from('volunteers')
+      .select('reference_id')
+      .order('created_at', { ascending: false })
+      .limit(1)
+      .single()
 
-  if (countError) {
-      console.error("Supabase Count Error:", countError)
-      return { message: "Database Connection Failed. Check configuration.", error: true, fields: rawData }
+  let sequence = 1001
+  if (lastVolunteer?.reference_id) {
+      const parts = lastVolunteer.reference_id.split('-')
+      if (parts.length === 3) {
+          const lastSeq = parseInt(parts[2])
+          if (!isNaN(lastSeq)) {
+              sequence = lastSeq + 1
+          }
+      }
   }
-
-  const sequence = (count || 0) + 1001
   
   const reference_id = `FC26-${roleCode}-${sequence}`
 
@@ -112,7 +120,7 @@ export async function registerVolunteer(
   if (error) {
     console.error('Supabase Insert Error:', error)
     if (error.code === '23505') { 
-        return { message: "This email or phone number is already registered.", error: true, fields: rawData }
+        return { message: "System Error: ID Collision or Duplicate Entry. Please try again.", error: true, fields: rawData }
     }
     return { message: `Registration Failed: ${error.message}`, error: true, fields: rawData }
   }
