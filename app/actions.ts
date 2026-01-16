@@ -83,56 +83,72 @@ export async function registerVolunteer(
   // Format: FC26-{ROLE_CODE}-{SEQUENCE}
   // ---------------------------------------------------------
   
+  // ---------------------------------------------------------
+  // 1 & 2. Generate Reference ID & Insert (With Retry)
+  // ---------------------------------------------------------
+  
   // Get Role Code (First letter of first role, e.g., 'M' for Medical)
   const roleCode = parsed.data.preferred_roles[0]?.charAt(0).toUpperCase() || 'G' // G for General
   
-  // Get Sequence (Find max existing sequence to avoid collision on delete)
-  // Note: For high-concurrency production, use a Database Sequence/Trigger.
-  const { data: lastVolunteer, error: fetchError } = await supabase
-      .from('volunteers')
-      .select('reference_id')
-      .order('created_at', { ascending: false })
-      .limit(1)
-      .single()
-
-  let sequence = 1001
-  if (lastVolunteer?.reference_id) {
-      const parts = lastVolunteer.reference_id.split('-')
-      if (parts.length === 3) {
-          const lastSeq = parseInt(parts[2])
-          if (!isNaN(lastSeq)) {
-              sequence = lastSeq + 1
+  let attempts = 0
+  const maxAttempts = 3
+  
+  while (attempts < maxAttempts) {
+      attempts++
+      
+      // Get Sequence (Find max existing sequence)
+      const { data: lastVolunteer } = await supabase
+          .from('volunteers')
+          .select('reference_id')
+          .order('created_at', { ascending: false })
+          .limit(1)
+          .single()
+    
+      let sequence = 1001
+      if (lastVolunteer?.reference_id) {
+          const parts = lastVolunteer.reference_id.split('-')
+          if (parts.length === 3) {
+              const lastSeq = parseInt(parts[2])
+              if (!isNaN(lastSeq)) {
+                  // If we are retrying, maybe add a random jump or just +1 again?
+                  // Simple +1 is usually enough unless high concurrency.
+                  sequence = lastSeq + 1
+              }
           }
       }
+      
+      const reference_id = `FC26-${roleCode}-${sequence}`
+
+      const { error } = await supabase.from('volunteers').insert({
+        ...parsed.data,
+        reference_id,
+        status: 'Registered'
+      })
+    
+      if (!error) {
+          // Success!
+          revalidatePath('/admin')
+          return {
+            message: "Registration Successful!",
+            error: false,
+            referenceId: reference_id
+          }
+      }
+
+      console.error(`Attempt ${attempts} failed:`, error)
+
+      // If it's NOT a unique violation (23505), fail immediately.
+      // If it IS a unique violation, loop again to retry with new ID.
+      if (error.code !== '23505') {
+          return { message: `Registration Failed: ${error.message}`, error: true, fields: rawData }
+      }
+      
+      // If we are here, it was a 23505 error. Wait a tiny bit (backoff) to let other transaction finish?
+      // Optional: await new Promise(r => setTimeout(r, 100 * attempts))
   }
-  
-  const reference_id = `FC26-${roleCode}-${sequence}`
 
-  // ---------------------------------------------------------
-  // 2. Insert into DB
-  // ---------------------------------------------------------
-  const { error } = await supabase.from('volunteers').insert({
-    ...parsed.data,
-    reference_id,
-    status: 'Registered'
-  })
+  // If loop finishes without returning, we failed all attempts
+  return { message: "System Busy: Unable to generate ID. Please try again.", error: true, fields: rawData }
 
-  if (error) {
-    console.error('Supabase Insert Error:', error)
-    if (error.code === '23505') { 
-        return { message: "System Error: ID Collision or Duplicate Entry. Please try again.", error: true, fields: rawData }
-    }
-    return { message: `Registration Failed: ${error.message}`, error: true, fields: rawData }
-  }
 
-  // ---------------------------------------------------------
-  // 3. Revalidate Admin Path (Fixes Sync Issue)
-  // ---------------------------------------------------------
-  revalidatePath('/admin')
-
-  return {
-    message: "Registration Successful!",
-    error: false,
-    referenceId: reference_id
-  }
 }

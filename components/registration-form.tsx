@@ -252,11 +252,11 @@ export default function RegistrationForm() {
                <div className="space-y-4 md:space-y-6">
                      <div className="col-span-2">
                        <Label className="text-[10px] md:text-xs uppercase font-bold text-slate-500 tracking-wider mb-2 block">Full Name</Label>
-                       <Input name="full_name" placeholder="E.g. Jane Doe" defaultValue={state.fields?.full_name} className="h-12 md:h-14 px-4 md:px-6 rounded-2xl bg-slate-50 border-transparent focus:border-black focus:ring-0 focus:bg-white transition-all text-base md:text-lg" />
+                       <Input name="full_name" maxLength={100} placeholder="E.g. Jane Doe" defaultValue={state.fields?.full_name} className="h-12 md:h-14 px-4 md:px-6 rounded-2xl bg-slate-50 border-transparent focus:border-black focus:ring-0 focus:bg-white transition-all text-base md:text-lg" />
                      </div>
                      <div className="col-span-2">
                        <Label className="text-[10px] md:text-xs uppercase font-bold text-slate-500 tracking-wider mb-2 block">Organization / Institution Name</Label>
-                       <Input name="organization" placeholder="College, Company, or NGO Name" defaultValue={state.fields?.organization} className="h-12 md:h-14 px-4 md:px-6 rounded-2xl bg-slate-50 border-transparent focus:border-black focus:ring-0 focus:bg-white transition-all text-base md:text-lg" />
+                       <Input name="organization" maxLength={100} placeholder="College, Company, or NGO Name" defaultValue={state.fields?.organization} className="h-12 md:h-14 px-4 md:px-6 rounded-2xl bg-slate-50 border-transparent focus:border-black focus:ring-0 focus:bg-white transition-all text-base md:text-lg" />
                      </div>
                      <div className="grid grid-cols-2 gap-4">
                        <div>
@@ -265,26 +265,26 @@ export default function RegistrationForm() {
                        </div>
                         <div>
                           <Label className="text-[10px] md:text-xs uppercase font-bold text-slate-500 tracking-wider mb-2 block">Location</Label>
-                          <Input name="location" placeholder="City/Area" defaultValue={state.fields?.location} className="h-12 md:h-14 px-4 md:px-6 rounded-2xl bg-slate-50 border-transparent focus:border-black focus:ring-0 focus:bg-white transition-all text-base md:text-lg" />
+                          <Input name="location" maxLength={100} placeholder="City/Area" defaultValue={state.fields?.location} className="h-12 md:h-14 px-4 md:px-6 rounded-2xl bg-slate-50 border-transparent focus:border-black focus:ring-0 focus:bg-white transition-all text-base md:text-lg" />
                        </div>
                      </div>
                       <div>
                         <Label className="text-[10px] md:text-xs uppercase font-bold text-slate-500 tracking-wider mb-2 block">Phone</Label>
-                        <Input name="phone" type="tel" placeholder="+91..." defaultValue={state.fields?.phone} className="h-12 md:h-14 px-4 md:px-6 rounded-2xl bg-slate-50 border-transparent focus:border-black focus:ring-0 focus:bg-white transition-all text-base md:text-lg" />
+                        <Input name="phone" type="tel" maxLength={15} placeholder="+91..." defaultValue={state.fields?.phone} className="h-12 md:h-14 px-4 md:px-6 rounded-2xl bg-slate-50 border-transparent focus:border-black focus:ring-0 focus:bg-white transition-all text-base md:text-lg" />
                      </div>
                      <div className="col-span-2">
                         <Label className="text-[10px] md:text-xs uppercase font-bold text-slate-500 tracking-wider mb-2 block">Email Address</Label>
-                        <Input name="email" type="email" placeholder="jane@example.com" defaultValue={state.fields?.email} className="h-12 md:h-14 px-4 md:px-6 rounded-2xl bg-slate-50 border-transparent focus:border-black focus:ring-0 focus:bg-white transition-all text-base md:text-lg" />
+                        <Input name="email" type="email" maxLength={100} placeholder="jane@example.com" defaultValue={state.fields?.email} className="h-12 md:h-14 px-4 md:px-6 rounded-2xl bg-slate-50 border-transparent focus:border-black focus:ring-0 focus:bg-white transition-all text-base md:text-lg" />
                      </div>
                      
                      <div className="pt-4 border-t border-slate-100">
                         <Label className="text-[10px] md:text-xs uppercase font-bold text-slate-500 tracking-wider mb-4 block">Emergency Contact</Label>
                         <div className="grid md:grid-cols-2 gap-4 md:gap-6">
                              <div>
-                                <Input name="emergency_contact_name" placeholder="Contact Name" className="h-12 md:h-14 rounded-xl bg-slate-50 border-transparent text-base md:text-lg" />
+                                <Input name="emergency_contact_name" maxLength={100} placeholder="Contact Name" className="h-12 md:h-14 rounded-xl bg-slate-50 border-transparent text-base md:text-lg" />
                              </div>
                              <div>
-                                <Input name="emergency_contact_phone" placeholder="Emergency Phone" className="h-12 md:h-14 rounded-xl bg-slate-50 border-transparent text-base md:text-lg" />
+                                <Input name="emergency_contact_phone" maxLength={15} placeholder="Emergency Phone" className="h-12 md:h-14 rounded-xl bg-slate-50 border-transparent text-base md:text-lg" />
                              </div>
                         </div>
                      </div>
@@ -320,7 +320,7 @@ export default function RegistrationForm() {
                             </label>
                         ))}
                      </div>
-                     <Input name="custom_skills" placeholder="Other skills..." className="mt-4 h-12 rounded-xl bg-slate-50 border-transparent text-sm md:text-base" />
+                     <Input name="custom_skills" maxLength={200} placeholder="Other skills..." className="mt-4 h-12 rounded-xl bg-slate-50 border-transparent text-sm md:text-base" />
                 </div>
               </div>
             </div>
